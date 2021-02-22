@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <script>
+      let playableOptions = ["Rock", "Paper", "Scissors"];
+      let userScore = 0;
+      let computerScore = 0;
+
+      // computerPlay function will randomly select then return "Rock", "Paper", or "Scissors"
+      function computerSelection() {
+        let computerChoice =
+          playableOptions[Math.floor(Math.random() * playableOptions.length)];
+        return playableOptions.indexOf(computerChoice);
+      }
+
+      // userSelection function asks the user for input of either rock paper or scissors which translates to a playable option.
+      // entered string is converted to lower case then first letter capitalised
+      // then returns index of the option from the playableOptions array
+      function userSelection() {
+        let userInput = prompt(
+          "Please enter your selection. Rock, Paper, or Scissors!"
+        );
+        userInput = userInput.toLowerCase();
+        userInput = userInput.charAt(0).toUpperCase() + userInput.slice(1);
+
+        return userInput
+          ? playableOptions.indexOf(userInput)
+          : console.log(
+              userInput + " is not a valid option, please try again."
+            );
+
+        // if (playableOptions.indexOf(userInput) == -1) {
+        //   console.log(userInput + " is not a valid option, please try again.");
+        //   userSelection();
+        // } else {
+        //   return playableOptions.indexOf(userInput);
+        // }
+      }
+
+      //playRound function plays a round then increases the score of the winner
+      function playRound(computerSelection, userSelection) {
+        if (computerSelection === userSelection) {
+          return console.log(
+            "computer selected: " +
+              playableOptions[computerSelection] +
+              ". User selected: " +
+              playableOptions[userSelection] +
+              ". It's a DRAW! No points"
+          );
+        } else if ((computerSelection + 1) % 3 == userSelection) {
+          userScore++;
+          return console.log(
+            "computer selected: " +
+              playableOptions[computerSelection] +
+              ". User selected: " +
+              playableOptions[userSelection] +
+              ". User Wins! User gets 1 point"
+          );
+        } else {
+          computerScore++;
+          return console.log(
+            "computer selected: " +
+              playableOptions[computerSelection] +
+              ". User selected: " +
+              playableOptions[userSelection] +
+              ". Computer Wins! Computer gets 1 point"
+          );
+        }
+      }
+
+      //This function loops 5 times to play a best of 5, prints the score at the end of each round then
+      //declares a winner
+      function game() {
+        console.log("Best of 5!");
+
+        for (i = 0; i < 5; i++) {
+          playRound(computerSelection(), userSelection());
+          console.log(
+            "Computer has: " +
+              computerScore +
+              " points. User has: " +
+              userScore +
+              "."
+          );
+        }
+        console.log("Game over!");
+        if (computerScore === userScore) {
+          console.log(
+            "It's a DRAW! Both players have " + computerScore + " points."
+          );
+        } else if (computerScore > userScore) {
+          console.log(
+            "Computer wins with " +
+              computerScore +
+              " points! User only had " +
+              userScore
+          );
+        } else {
+          console.log(
+            "User wins with " +
+              userScore +
+              " points! Computer only had " +
+              computerScore
+          );
+        }
+      }
+      game();
+    </script>
+  </body>
+</html>
