@@ -1,0 +1,14 @@
+body {
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#rock,
+#paper,
+#scissors {
+    width: 25vw;
+}
