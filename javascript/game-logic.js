@@ -61,7 +61,8 @@ function playRound(computerSelection, userSelection) {
 function game() {
     console.log('Best of 5!');
 
-    for (i = 0; i < 5; i++) {
+    const gameLength = 5;
+    for (i = 0; i < gameLength; i++) {
         playRound(computerSelection(), userSelection());
         console.log('Computer has: ' + computerScore + ' points. User has: ' + userScore + '.');
     }
