@@ -3,17 +3,22 @@ let playableOptions = ['rock', 'paper', 'scissors'];
 let userScore = 0;
 let computerScore = 0;
 let userSelection = '';
+let roundsPlayed = 0;
 
 const userOptions = document.querySelectorAll('.userOption');
 
 userOptions.forEach((button) => {
     button.addEventListener('click', (event) => {
         userSelection = event.target.id;
-
         userSelection = playableOptions.indexOf(userSelection);
         console.log(userSelection);
 
         playRound(computerSelection(), userSelection);
+
+        if (roundsPlayed === 5){
+            checkWinner();
+        } 
+
     });
 });
 
@@ -23,26 +28,10 @@ function computerSelection() {
     return playableOptions.indexOf(computerChoice);
 }
 
-// userSelection function asks the user for input of either rock paper or scissors which translates to a playable option.
-// entered string is converted to lower case then first letter capitalised
-// then returns index of the option from the playableOptions array
-
-// function userSelection() {
-//     let userInput = prompt('Please enter your selection. Rock, Paper, or Scissors!');
-//     userInput = userInput.toLowerCase();
-//     userInput = userInput.charAt(0).toUpperCase() + userInput.slice(1);
-
-//     if (playableOptions.indexOf(userInput) == -1) {
-//         console.log(userInput + ' is not a valid option, please try again.');
-//         userSelection();
-//     } else {
-//         return playableOptions.indexOf(userInput);
-//     }
-// }
 
 //playRound function plays a round then increases the score of the winner
-//try {
 function playRound(computerSelection, userSelection) {
+    roundsPlayed++;
     if (computerSelection === userSelection) {
         return console.log(
             'computer selected: ' +
@@ -71,19 +60,16 @@ function playRound(computerSelection, userSelection) {
         );
     }
 }
-//} catch (err) {
-//    console.log('game exited, want to try again? Please refresh the page');
-//}
+
 //This function loops 5 times to play a best of 5, prints the score at the end of each round then
 //declares a winner
-function playGame() {
-    console.log('Best of 5!');
+function checkWinner() {
 
-    const gameLength = 5;
-    for (i = 0; i < gameLength; i++) {
-        playRound(computerSelection(), userSelection());
-        console.log('Computer has: ' + computerScore + ' points. User has: ' + userScore + '.');
-    }
+    // const gameLength = 5;
+    // for (i = 0; i < gameLength; i++) {
+    //     playRound(computerSelection(), userSelection());
+    //     console.log('Computer has: ' + computerScore + ' points. User has: ' + userScore + '.');
+    // }
     console.log('Game over!');
     if (computerScore === userScore) {
         console.log("It's a DRAW! Both players have " + computerScore + ' points.');
@@ -93,8 +79,3 @@ function playGame() {
         console.log('User wins with ' + userScore + ' points! Computer only had ' + computerScore);
     }
 }
-// try {
-//     playGame();
-// } catch (err) {
-//     console.log('game exited, want to try again? Please refresh the page');
-// }
