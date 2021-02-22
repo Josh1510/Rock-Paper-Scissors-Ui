@@ -5,7 +5,8 @@ let computerScore = 0;
 let userSelection = '';
 let roundsPlayed = 0;
 
-const userOptions = document.querySelectorAll('.userOption');
+const userOptions = document.querySelectorAll('.user-option');
+const scoreUpdate = document.querySelectorAll('.score');
 
 userOptions.forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -15,10 +16,9 @@ userOptions.forEach((button) => {
 
         playRound(computerSelection(), userSelection);
 
-        if (roundsPlayed === 5){
+        if (roundsPlayed === 5) {
             checkWinner();
-        } 
-
+        }
     });
 });
 
@@ -27,7 +27,6 @@ function computerSelection() {
     let computerChoice = playableOptions[Math.floor(Math.random() * playableOptions.length)];
     return playableOptions.indexOf(computerChoice);
 }
-
 
 //playRound function plays a round then increases the score of the winner
 function playRound(computerSelection, userSelection) {
@@ -42,6 +41,7 @@ function playRound(computerSelection, userSelection) {
         );
     } else if ((computerSelection + 1) % 3 == userSelection) {
         userScore++;
+        scoreUpdate[1].textContent = 'User Score: ' + userScore;
         return console.log(
             'computer selected: ' +
                 playableOptions[computerSelection] +
@@ -51,6 +51,7 @@ function playRound(computerSelection, userSelection) {
         );
     } else {
         computerScore++;
+        scoreUpdate[0].textContent = 'Computer Score: ' + computerScore;
         return console.log(
             'computer selected: ' +
                 playableOptions[computerSelection] +
@@ -64,7 +65,6 @@ function playRound(computerSelection, userSelection) {
 //This function loops 5 times to play a best of 5, prints the score at the end of each round then
 //declares a winner
 function checkWinner() {
-
     // const gameLength = 5;
     // for (i = 0; i < gameLength; i++) {
     //     playRound(computerSelection(), userSelection());
