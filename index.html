@@ -10,8 +10,9 @@
         <title></title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="" />
+        <link rel="stylesheet" href="main.css" />
     </head>
+
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">
@@ -22,12 +23,13 @@
 
         <div id="game-container">
             <div id="button-container">
-                <div id="rock" class="button"><img src = images/rock.png /></div>
-                <div id="paper" class="button"><img src = images/paper.png /></div>
-                <div id="scissors" class="button"><img src = images/scissors.png /></div>
+                <div class="userOption"><img id="rock" src=images/rock.png /></div>
+                <div class="userOption"><img id="paper" src=images/paper.png /></div>
+                <div class="userOption"><img id="scissors" src=images/scissors.png /></div>
             </div>
         </div>
 
         <script src="javascript/game-logic.js" async></script>
+        <script src="javascript/user-interactions.js" async></script>
     </body>
 </html>
