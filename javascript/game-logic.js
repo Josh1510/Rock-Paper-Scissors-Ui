@@ -51,7 +51,7 @@ function playRound(computerSelection, userSelection) {
         );
     } else {
         computerScore++;
-        scoreUpdate[0].textContent = 'Computer Score : ' + computerScore;
+        scoreUpdate[0].textContent = 'Computer Score: ' + computerScore;
         return console.log(
             'computer selected: ' +
                 playableOptions[computerSelection] +
