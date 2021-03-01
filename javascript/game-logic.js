@@ -7,6 +7,7 @@ let roundsPlayed = 0;
 
 const userOptions = document.querySelectorAll('.user-option');
 const scoreUpdate = document.querySelectorAll('.score');
+const resultsUpdate = document.querySelectorAll('.result');
 
 userOptions.forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -31,7 +32,15 @@ function computerSelection() {
 //playRound function plays a round then increases the score of the winner
 function playRound(computerSelection, userSelection) {
     roundsPlayed++;
+
     if (computerSelection === userSelection) {
+        resultsUpdate[0].textContent = 'Results: draw';
+
+        // var para = document.createElement('p');
+        // var node = document.createTextNode('was a draw.');
+        // para.appendChild(node);
+        // resultsUpdate[0].appendChild(para);
+
         return console.log(
             'computer selected: ' +
                 playableOptions[computerSelection] +
@@ -42,6 +51,13 @@ function playRound(computerSelection, userSelection) {
     } else if ((computerSelection + 1) % 3 == userSelection) {
         userScore++;
         scoreUpdate[1].textContent = 'User Score: ' + userScore;
+        resultsUpdate[0].textContent = 'Results: userwin';
+
+        // var para = document.createElement('p');
+        // var node = document.createTextNode('user wins');
+        // para.appendChild(node);
+        // resultsUpdate[0].appendChild(para);
+
         return console.log(
             'computer selected: ' +
                 playableOptions[computerSelection] +
@@ -52,6 +68,13 @@ function playRound(computerSelection, userSelection) {
     } else {
         computerScore++;
         scoreUpdate[0].textContent = 'Computer Score: ' + computerScore;
+        resultsUpdate[0].textContent = 'Results: computerwin';
+
+        // var para = document.createElement('p');
+        // var node = document.createTextNode('computer wins.');
+        // para.appendChild(node);
+        // resultsUpdate[0].appendChild(para);
+
         return console.log(
             'computer selected: ' +
                 playableOptions[computerSelection] +
@@ -78,4 +101,11 @@ function checkWinner() {
     } else {
         console.log('User wins with ' + userScore + ' points! Computer only had ' + computerScore);
     }
+}
+
+//This function adds a new line for the results
+function addResults(winner) {
+    let para = document.createElement('p');
+    let node = document.createTextNode(winner);
+    para.appendChild(node);
 }
