@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../odin-javascript-learning-1"
+		},
+		{
+			"name": "Rock-Paper-Scissors-Ui",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Rock-Paper-Scissors-Ui"
+	}
+}
