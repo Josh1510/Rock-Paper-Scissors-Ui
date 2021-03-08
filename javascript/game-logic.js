@@ -15,6 +15,9 @@ const scoreUpdate = document.querySelectorAll('.score');
 
 const resultsUpdate = document.querySelectorAll('.result');
 
+const userResults = document.querySelector('#user-results');
+const computerResults = document.querySelector('#computer-results');
+
 // adds an event listner on each playable option button then plays a round based using that
 // selection. checks for number of rounds to see if winner should be declared
 userOptions.forEach((button) => {
@@ -37,32 +40,38 @@ function computerSelection() {
     return playableOptions.indexOf(computerChoice);
 }
 
-// function printResults(results) {
-//     var para = document.createElement('p');
-//     var node = document.createTextNode(results);
-//     para.append(node);
-//     resultsUpdate[0] = resultsUpdate[0].appendChild(para);
-// }
+function printResults(userSelection, computerSelection) {
+    var userPara = document.createElement('p');
+    var userNode = document.createTextNode(userSelection);
+    userPara.append(userNode);
+    userResults.appendChild(userPara);
+
+    var computerPara = document.createElement('p');
+    var computerNode = document.createTextNode(computerSelection);
+    computerPara.append(computerNode);
+    computerResults.appendChild(computerPara);
+}
 
 //playRound function plays a round then increases the score of the winner
 function playRound(computerSelection, userSelection) {
     if (computerSelection === userSelection) {
         resultsUpdate[0].textContent = 'Results: draw';
 
-        //printResults('draw');
+        printResults(playableOptions[userSelection], playableOptions[computerSelection]);
     } else if ((computerSelection + 1) % 3 == userSelection) {
         userScore++;
         scoreUpdate[1].textContent = 'User Score: ' + userScore;
         resultsUpdate[0].textContent = 'Results: userwin';
 
-        //printResults('user wins');
+        printResults(playableOptions[userSelection], playableOptions[computerSelection]);
     } else {
         computerScore++;
         scoreUpdate[0].textContent = 'Computer Score: ' + computerScore;
         resultsUpdate[0].textContent = 'Results: computerwin';
 
-        // printResults('computer wins');
+        printResults(playableOptions[userSelection], playableOptions[computerSelection]);
     }
+
     roundsPlayed++;
 }
 
