@@ -10,7 +10,7 @@
     width: 25vw;
 }
 
-#results-container {
+#round-result {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

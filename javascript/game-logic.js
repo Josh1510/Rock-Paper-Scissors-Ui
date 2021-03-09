@@ -24,13 +24,8 @@ userOptions.forEach((button) => {
     button.addEventListener('click', (event) => {
         userSelection = event.target.id;
         userSelection = playableOptions.indexOf(userSelection);
-        console.log(userSelection);
 
-        playRound(computerSelection(), userSelection);
-
-        if (roundsPlayed === 5) {
-            checkWinner();
-        }
+        roundsPlayed === 5 ? checkWinner() : playRound(computerSelection(), userSelection);
     });
 });
 
