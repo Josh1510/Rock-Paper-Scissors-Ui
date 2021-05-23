@@ -76,8 +76,7 @@ function playRound(computerSelection, userSelection) {
     roundsPlayed++;
 }
 
-//This function loops 5 times to play a best of 5, prints the score at the end of each round then
-//declares a winner
+//This function checks to see if a winner has been decided
 function checkWinner() {
     if (roundsPlayed === 5 || userScore === 3 || computerScore === 3) {
         console.log('Game over!');
