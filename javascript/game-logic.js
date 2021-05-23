@@ -20,14 +20,20 @@ const computerResults = document.querySelector('#computer-results');
 
 // adds an event listner on each playable option button then plays a round based using that
 // selection. checks for number of rounds to see if winner should be declared
-userOptions.forEach((button) => {
-    button.addEventListener('click', (event) => {
-        userSelection = event.target.id;
-        userSelection = playableOptions.indexOf(userSelection);
-
-        roundsPlayed === 5 ? checkWinner() : playRound(computerSelection(), userSelection);
-    });
+userOptions.forEach((userOptions) => {
+    userOptions.addEventListener('click', () => letsGo(userOptions.id), false);
 });
+
+function letsGo(userOptions) {
+    userSelection = userOptions;
+    userSelection = playableOptions.indexOf(userSelection);
+
+    if (roundsPlayed === 5 || userScore === 3 || computerScore === 3) {
+        console.log('games over! reset or stop clicking');
+    } else {
+        playRound(computerSelection(), userSelection);
+    }
+}
 
 // computerPlay function will randomly select then return "Rock", "Paper", or "Scissors"
 function computerSelection() {
@@ -66,19 +72,21 @@ function playRound(computerSelection, userSelection) {
 
         printResults(playableOptions[userSelection], playableOptions[computerSelection]);
     }
-
+    checkWinner();
     roundsPlayed++;
 }
 
 //This function loops 5 times to play a best of 5, prints the score at the end of each round then
 //declares a winner
 function checkWinner() {
-    console.log('Game over!');
-    if (computerScore === userScore) {
-        console.log("It's a DRAW! Both players have " + computerScore + ' points.');
-    } else if (computerScore > userScore) {
-        console.log('Computer wins with ' + computerScore + ' points! User only had ' + userScore);
-    } else {
-        console.log('User wins with ' + userScore + ' points! Computer only had ' + computerScore);
+    if (roundsPlayed === 5 || userScore === 3 || computerScore === 3) {
+        console.log('Game over!');
+        if (computerScore === userScore) {
+            console.log("It's a DRAW! Both players have " + computerScore + ' points.');
+        } else if (computerScore > userScore) {
+            console.log('Computer wins with ' + computerScore + ' points! User only had ' + userScore);
+        } else {
+            console.log('User wins with ' + userScore + ' points! Computer only had ' + computerScore);
+        }
     }
 }

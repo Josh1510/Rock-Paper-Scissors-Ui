@@ -4,9 +4,7 @@
     flex-wrap: wrap;
 }
 
-#rock,
-#paper,
-#scissors {
+img {
     width: 25vw;
 }
 
